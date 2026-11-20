@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10150f">
+<title>Jensen Button — Meme Generator</title>
+<style>
+:root{--green:#76b900;--bg:#0d100d;--panel:#171d17;--line:#2c382b;--muted:#a6b0a4}*{box-sizing:border-box}body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% -15%,#30451e 0,transparent 48%),var(--bg);color:#f6f7f3;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:flex;justify-content:center;padding:22px 14px 32px}.app{width:min(620px,100%)}header{text-align:center;margin:0 0 18px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.2em;color:#a9db68}h1{font-size:clamp(32px,8vw,52px);line-height:.95;letter-spacing:-.06em;margin:9px 0 7px;font-weight:1000}h1 span{color:var(--green)}header p{margin:0;color:var(--muted);font-size:14px}.stage{background:linear-gradient(145deg,#1b241a,#121712);border:1px solid var(--line);border-radius:22px;padding:10px;box-shadow:0 20px 65px #0008}.meme{position:relative;overflow:hidden;border-radius:15px;background:#090b09;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}.meme img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:contrast(1.04) saturate(.9)}.meme:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#000b 0%,transparent 27%,transparent 62%,#000c 100%);pointer-events:none}.caption{position:absolute;z-index:2;left:5%;right:5%;text-align:center;text-transform:uppercase;font-family:Impact,'Arial Black',system-ui,sans-serif;font-weight:1000;font-size:clamp(23px,6vw,39px);line-height:1.03;letter-spacing:.015em;color:white;text-shadow:3px 3px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,0 5px 12px #000;overflow-wrap:anywhere}.caption.top{top:18px}.caption.bottom{bottom:20px}.watermark{position:absolute;z-index:3;right:10px;bottom:7px;font-size:9px;color:#ffffffa8;font-weight:800;letter-spacing:.1em}.controls{padding:14px 2px 2px}.generate{width:100%;border:0;border-radius:15px;background:var(--green);color:#10150b;font-size:19px;font-weight:1000;letter-spacing:.025em;padding:18px 12px;box-shadow:0 5px 0 #416900;cursor:pointer}.generate:active{transform:translateY(3px);box-shadow:0 2px 0 #416900}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.action{border:1px solid #3b4938;border-radius:13px;padding:14px 8px;background:#20291f;color:white;font-weight:850;font-size:14px;cursor:pointer}.action.whatsapp{background:#123c26;border-color:#24643c}.hint{text-align:center;color:#829080;font-size:11px;line-height:1.45;margin:13px 8px 0}.credit{text-align:center;color:#667064;font-size:10px;margin-top:14px}.toast{min-height:18px;text-align:center;color:#b6e77a;font-size:12px;margin-top:8px}@media(min-width:560px){body{padding-top:28px}.meme{aspect-ratio:4/4.4}}
+</style></head><body><main class="app">
+<header><div class="eyebrow">THE OFFICIAL BOYS-GROUP DISTRACTION</div><h1>JENSEN <span>BUTTON</span></h1><p>Tap. Laugh. Forward. Repeat.</p></header>
+<section class="stage"><div class="meme" id="meme"><img id="photo" alt="Jensen Huang" crossorigin="anonymous"><div class="caption top" id="top"></div><div class="caption bottom" id="bottom"></div><div class="watermark">JENSEN BUTTON</div></div>
+<div class="controls"><button class="generate" id="generate">🎲 GENERATE ANOTHER</button><div class="actions"><button class="action whatsapp" id="share">🟢 SEND TO WHATSAPP</button><button class="action" id="save">⬇ SAVE MEME</button></div><div class="toast" id="toast" aria-live="polite"></div></div></section>
+<p class="hint">No login. No setup. Just Jensen. Share opens your phone's share menu when supported; otherwise save the image and attach it in WhatsApp.</p><div class="credit">Fan-made meme toy · Photos: Wikimedia Commons (see credits in source)</div>
+</main><script>
+const photos=[
+ {url:'https://commons.wikimedia.org/wiki/Special:FilePath/JensenHuangSC18.jpg',credit:'Raysonho · CC0'},
+ {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Jen-Hsun_Huang_Headshot_(15313247387).jpg',credit:'NVIDIA Corporation · CC BY-SA 2.0'},
+ {url:'https://commons.wikimedia.org/wiki/Special:FilePath/Jen-Hsun_Huang_2025.jpg',credit:'Daniel Torok / White House · Public domain'}
+];
+const lines=[
+['ME: I WILL WAIT FOR A BETTER ENTRY','JENSEN: THE ENTRY IS THE FRIENDS WE MADE ALONG THE WAY'],
+['WHEN NVIDIA DROPS A NEW GPU','MY BANK APP STARTS PLAYING TUM HI HO'],
+['BRO SAID AI WILL TAKE OUR JOBS','MY MANAGER JUST ADDED “AI SKILLS” TO MY PMS'],
+['ME: JUST ONE SHARE OF NVIDIA','ALSO ME: CHECKING THE PRICE EVERY 11 SECONDS'],
+['WHEN THE MARKET IS GREEN','I AM A LONG-TERM INVESTOR'],
+['WHEN THE MARKET IS RED','I AM A VALUE INVESTOR'],
+['JENSEN: THE FUTURE IS ACCELERATED COMPUTING','MY LAPTOP: PLEASE LET ME REST'],
+['FRIEND: WHY ARE YOU BUYING THE DIP?','ME: JENSEN LOOKED AT ME FUNNY'],
+['NVIDIA ANNOUNCES A NEW CHIP','MY WALLET HAS LEFT THE CHAT'],
+['WHEN SOMEONE SAYS GPUs ARE TOO EXPENSIVE','JENSEN: HAVE YOU TRIED BEING RICH?'],
+['ME AFTER WATCHING ONE AI VIDEO','WELCOME TO MY STARTUP PITCH'],
+['THE GROUP: LET’S MAKE A QUICK PLAN','JENSEN: FIRST, WE NEED A DATA CENTRE'],
+['WHEN YOU FINALLY SELL THE DIP','JENSEN ANNOUNCES THE NEXT BIG THING'],
+['MY PORTFOLIO: DOWN 18%','JENSEN’S JACKET: UP 300%'],
+['BRO: I HAVE A SMALL SIDE PROJECT','THE SIDE PROJECT REQUIRES 8 H100s'],
+['WHEN THE WIFI LAGS FOR 2 SECONDS','I NEED MORE COMPUTE'],
+['ME TRYING TO EXPLAIN MY OPTIONS TRADE','JENSEN EXPLAINS THE ENTIRE FUTURE OF AI IN 4 MINUTES'],
+['I ASKED AI TO MAKE ME RICH','IT GENERATED A PICTURE OF JENSEN'],
+['WHEN SOMEONE SAYS “AI IS JUST A HYPE”','JENSEN HAS ENTERED THE MEETING'],
+['SALARY CREDITED','JENSEN: THANK YOU FOR YOUR CONTRIBUTION'],
+['ME: I AM DONE BUYING TECH STOCKS','ALSO ME WHEN NVIDIA FALLS 2%: 👀'],
+['WHEN YOUR FRIEND BUYS THE TOP','JENSEN: LET HIM COOK'],
+['MY 4GB GPU TRYING TO RUN A LARGE MODEL','JENSEN PLEASE PICK UP THE PHONE'],
+['WHEN YOU SAY YOU UNDERSTAND AI','JENSEN ASKS YOU TO EXPLAIN TRANSFORMERS'],
+['THE BOYS: ONE LAST MEME THEN SLEEP','JENSEN BUTTON: GENERATES 47 MORE'],
+['WHEN THE CEO WEARS THE SAME JACKET AGAIN','THAT’S NOT A FIT. THAT’S BRAND EQUITY.'],
+['ME CHECKING MY PORTFOLIO AT 9:15','JENSEN CHECKING THE NEXT DECADE'],
+['I HAVE A DIVERSIFIED PORTFOLIO','IT IS 73% NVIDIA IN DIFFERENT EMOTIONS'],
+['WHEN SOMEONE SAYS “SELL EVERYTHING”','JENSEN: DEFINE EVERYTHING'],
+['MOM: WHY ARE YOU LAUGHING AT YOUR PHONE?','ME: IT’S A VERY IMPORTANT BUSINESSMAN']
+];
+const photo=document.getElementById('photo'),topEl=document.getElementById('top'),bottomEl=document.getElementById('bottom'),toast=document.getElementById('toast');let currentPhoto=photos[0],currentLines=lines[0];
+function choose(arr,exclude){let a=arr.filter(x=>x!==exclude);return a[Math.floor(Math.random()*a.length)]}
+function setImage(p){currentPhoto=p;photo.src=p.url;photo.onerror=()=>{photo.onerror=null;photo.src=photos[0].url}}
+function generate(){currentLines=choose(lines,currentLines);let p=choose(photos,currentPhoto);setImage(p);topEl.textContent=currentLines[0];bottomEl.textContent=currentLines[1];toast.textContent='';}
+function makeCanvas(){return new Promise((resolve,reject)=>{const img=new Image();img.crossOrigin='anonymous';img.onload=()=>{const c=document.createElement('canvas');c.width=1080;c.height=1350;const x=c.getContext('2d');let scale=Math.max(c.width/img.width,c.height/img.height),w=img.width*scale,h=img.height*scale;x.drawImage(img,(c.width-w)/2,(c.height-h)/2,w,h);let g=x.createLinearGradient(0,0,0,c.height);g.addColorStop(0,'rgba(0,0,0,.72)');g.addColorStop(.27,'rgba(0,0,0,0)');g.addColorStop(.62,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.78)');x.fillStyle=g;x.fillRect(0,0,c.width,c.height);function drawText(t,y,baseline){let size=76;x.textAlign='center';x.textBaseline=baseline;x.font=`1000 ${size}px Impact, Arial Black, sans-serif`;while(x.measureText(t).width>980&&size>38){size-=3;x.font=`1000 ${size}px Impact, Arial Black, sans-serif`}x.lineJoin='round';x.lineWidth=13;x.strokeStyle='#000';x.strokeText(t,540,y);x.fillStyle='#fff';x.fillText(t,540,y)}drawText(currentLines[0],80,'top');drawText(currentLines[1],1270,'bottom');x.font='bold 20px Arial';x.fillStyle='#ffffffaa';x.textAlign='right';x.fillText('JENSEN BUTTON',1050,1325);c.toBlob(b=>b?resolve(b):reject(new Error('Could not export image')),'image/png')};img.onerror=()=>reject(new Error('Photo could not be loaded for export'));img.src=currentPhoto.url;});}
+async function save(){try{toast.textContent='Preparing meme…';let b=await makeCanvas();let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='jensen-meme.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);toast.textContent='Saved! Send it to the boys 😂'}catch(e){toast.textContent='Image export blocked by photo host. Try another meme or take a screenshot.'}}
+document.getElementById('generate').onclick=generate;document.getElementById('save').onclick=save;
+document.getElementById('share').onclick=async()=>{try{let b=await makeCanvas(),f=new File([b],'jensen-meme.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Jensen meme',text:'😂'});return}await save();window.open('https://wa.me/?text='+encodeURIComponent('😂 Jensen meme incoming — attach the saved image!'),'_blank')}catch(e){if(e.name!=='AbortError')await save()}};
+generate();
+</script></body></html>
